@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Kartik Paver Industries — Full Stack Website
 
 **Premium Quality Paver Block Solutions | Latur, Maharashtra**
@@ -183,3 +184,6 @@ Rating: 4.9★ on Justdial
 - [x] Email notifications on inquiry
 - [x] Data seeding command
 - [x] Mobile responsive
+=======
+# Kartikpaver
+>>>>>>> 875f23b54700be37ae54c52e818a9e9109909cd2
