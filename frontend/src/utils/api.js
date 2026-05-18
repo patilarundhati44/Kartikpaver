@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://kartikpaver-production.up.railway.app';
+const API_BASE_URL = "https://kartikpaver-production.up.railway.app/api";
 
 export const api = {
   // Products
@@ -94,7 +94,7 @@ export const api = {
 
   // Site Settings
   getSiteSettings: async () => {
-    const response = await fetch(`${API_BASE_URL}/site-settings/`);
+    const response = await fetch(`${API_BASE_URL}/settings/`);
     if (!response.ok) throw new Error('Failed to fetch site settings');
     return response.json();
   },
