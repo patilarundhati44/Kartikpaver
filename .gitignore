@@ -1,3 +1,30 @@
 venv/
 node_modules/
 backend/venv/
+
+# Environment variables - NEVER commit these
+.env
+*.env
+backend/.env
+
+# Database
+backend/db.sqlite3
+
+# Media uploads (local only - use Cloudinary in production)
+backend/media/
+
+# Static files
+backend/staticfiles/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Build output
+frontend/build/
+frontend/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
