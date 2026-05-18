@@ -19,7 +19,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'kartikpaver-production.up.railway.app'
 ]
-ALLOWED
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
