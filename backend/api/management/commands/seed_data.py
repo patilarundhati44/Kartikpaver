@@ -19,6 +19,9 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('✅ Data seeded successfully!'))
 
     def _seed_products(self):
+        if Product.objects.exists():
+            self.stdout.write('  ✓ Products already exist, skipping seeding')
+            return
         products = [
             {
                 'name': 'I Shape Paver Block',
@@ -104,6 +107,9 @@ class Command(BaseCommand):
         self.stdout.write(f'  ✓ {len(products)} products seeded')
 
     def _seed_gallery(self):
+        if Gallery.objects.exists():
+            self.stdout.write('  ✓ Gallery items already exist, skipping seeding')
+            return
         items = [
             {'title': 'Hydraulic Press Machine', 'category': 'Factory', 'description': 'State-of-the-art hydraulic press for uniform block production', 'order': 1},
             {'title': 'I Shape Paver Blocks', 'category': 'Products', 'description': 'Premium I-shape blocks ready for dispatch', 'order': 2},
@@ -119,6 +125,9 @@ class Command(BaseCommand):
         self.stdout.write(f'  ✓ {len(items)} gallery items seeded')
 
     def _seed_testimonials(self):
+        if Testimonial.objects.exists():
+            self.stdout.write('  ✓ Testimonials already exist, skipping seeding')
+            return
         testimonials = [
             {'name': 'Pratap Pawar', 'role': 'Satisfied Customer', 'location': 'Latur', 'rating': 5, 'review': 'I had a great experience with Kartik Paver Industries. The products are of good quality. They offer many options, and I found what I needed easily. The service was excellent and delivery was on time.', 'project': 'Residential Project, Latur', 'order': 1},
             {'name': 'Ajinkya', 'role': 'Regular Customer', 'location': 'Latur', 'rating': 5, 'review': 'High quality products, durable, experienced staff, polite professional, timely delivery, reliable delivery partner, reasonably priced with discounts available. I had a great experience with Kartik Paver Industries!', 'project': 'Commercial Project, Latur', 'order': 2},
@@ -136,6 +145,9 @@ class Command(BaseCommand):
         self.stdout.write(f'  ✓ {len(testimonials)} testimonials seeded')
 
     def _seed_services(self):
+        if Service.objects.exists():
+            self.stdout.write('  ✓ Services already exist, skipping seeding')
+            return
         services = [
             {'title': 'Paver Block Installation', 'subtitle': 'Professional Installation Services', 'description': 'Our expert installation team ensures your paver blocks are laid perfectly with proper base preparation, leveling, and finishing. We handle projects of all sizes — from residential driveways to large commercial complexes.', 'features': ['Site assessment and planning', 'Sub-base preparation and compaction', 'Precision block laying and leveling', 'Edge restraint installation', 'Joint filling and sealing', 'Post-installation inspection'], 'applications': ['Driveways', 'Footpaths', 'Parking Areas', 'Commercial Plazas', 'Industrial Floors'], 'order': 1},
             {'title': 'Bulk Supply', 'subtitle': 'Large Volume Orders', 'description': 'We specialize in bulk supply of paver blocks for large-scale projects. With a daily production capacity of 50,000+ blocks, we can fulfill even the most demanding orders on schedule. Special pricing available for bulk orders.', 'features': ['Minimum order: 500 blocks', 'Bulk discount pricing', 'Priority production scheduling', 'Quality certificate with each batch', 'Flexible payment terms', 'Dedicated account manager'], 'applications': ['Municipal Projects', 'Real Estate Developers', 'Government Contracts', 'Large Contractors'], 'order': 2},
@@ -147,6 +159,9 @@ class Command(BaseCommand):
         self.stdout.write(f'  ✓ {len(services)} services seeded')
 
     def _seed_settings(self):
+        if SiteSettings.objects.exists():
+            self.stdout.write('  ✓ Site settings already exist, skipping seeding')
+            return
         SiteSettings.objects.get_or_create(pk=1, defaults={
             'company_name': 'Kartik Paver Industries',
             'tagline': 'Premium Quality Paver Block Solutions',
