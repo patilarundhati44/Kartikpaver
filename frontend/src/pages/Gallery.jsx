@@ -6,8 +6,11 @@ import { api } from '../utils/api';
 
 const CATEGORIES = ['All', 'Factory', 'Products', 'Projects'];
 
+const GALLERY_FALLBACK = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80';
+
 const GalleryCard = ({ item, onClick }) => {
-  const imgSrc = item.image_src || item.image || item.image_url || null;
+  // image_src is the absolute URL returned by the serializer (Cloudinary or Railway)
+  const imgSrc = item.image_src || item.image_url || item.image || null;
   const isVideo = item.video_url || item.video;
 
   return (
@@ -52,8 +55,8 @@ const GalleryCard = ({ item, onClick }) => {
             alt={item.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'flex';
+              e.target.onerror = null;
+              e.target.src = GALLERY_FALLBACK;
             }}
           />
         ) : null}
@@ -101,7 +104,7 @@ const GalleryCard = ({ item, onClick }) => {
 
 const LightboxModal = ({ item, onClose, onPrev, onNext }) => {
   if (!item) return null;
-  const imgSrc = item.image_src || item.image || item.image_url || null;
+  const imgSrc = item.image_src || item.image_url || item.image || null;
   const isVideo = item.video_url || item.video;
 
   return (

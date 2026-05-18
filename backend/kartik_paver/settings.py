@@ -1,10 +1,11 @@
 """
 Django settings for Kartik Paver Industries backend.
-Persistence: SQLite (db.sqlite3 in backend/) + local media files (backend/media/).
-Both survive server restarts automatically.
+Media Storage: Cloudinary (cloud) — images survive Railway restarts permanently.
+Database: SQLite (db.sqlite3).
 """
 
 import os
+import cloudinary
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
@@ -32,6 +33,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
+    'cloudinary',
+    'cloudinary_storage',
     # Local apps
     'api',
 ]
@@ -91,12 +94,29 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Persistent media file storage — images survive restarts.
-# Files are saved to: backend/media/products/ and backend/media/gallery/
+# --- Cloudinary Configuration ---
+# Images are stored permanently in Cloudinary cloud storage.
+# Set these 3 env variables in Railway dashboard:
+#   CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
+    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
+    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
+}
+
+cloudinary.config(
+    cloud_name=config('CLOUDINARY_CLOUD_NAME', default=''),
+    api_key=config('CLOUDINARY_API_KEY', default=''),
+    api_secret=config('CLOUDINARY_API_SECRET', default=''),
+)
+
+# Use Cloudinary for all uploaded media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Guarantee media subdirectories exist on first run
+# Keep local media dirs for local dev fallback
 os.makedirs(BASE_DIR / 'media' / 'products', exist_ok=True)
 os.makedirs(BASE_DIR / 'media' / 'gallery', exist_ok=True)
 
@@ -137,9 +157,9 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-# Image Storage: Local filesystem (backend/media/) — permanent, no cloud needed.
-# Uploaded files are referenced in the database by relative path (e.g. products/image.jpg)
-# and served by Django at http://localhost:8000/media/products/image.jpg
+# Image Storage: Cloudinary — permanent cloud storage, survives Railway restarts.
+# Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET in Railway env vars.
+# Free Cloudinary account: https://cloudinary.com/users/register_free (25GB free)
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

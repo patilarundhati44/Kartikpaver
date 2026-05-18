@@ -48,8 +48,8 @@ export const getProductImageUrl = (product) => {
     return image;
   }
   
-  // Resolve relative URLs with the backend base url
-  const backendBaseUrl = 'http://localhost:8000';
+  // Resolve relative URLs with the Railway backend base URL
+  const backendBaseUrl = 'https://kartikpaver-production.up.railway.app';
   if (image.startsWith('/')) {
     return `${backendBaseUrl}${image}`;
   }
