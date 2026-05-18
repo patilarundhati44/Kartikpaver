@@ -17,7 +17,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'kartikpaver-production.up.railway.app'
+    'kartikpaver-production.up.railway.app',
+    '.railway.app'
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -34,12 +35,13 @@ INSTALLED_APPS = [
     # Local apps
     'api',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
