@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.kartikpaver.com/sitemap.xml
+Sitemap: https://kartikpaver.vercel.app/sitemap.xml
