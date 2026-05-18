@@ -128,10 +128,11 @@ SIMPLE_JWT = {
 
 # CORS
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    config('FRONTEND_URL', default='http://localhost:3000'),
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://kartikpaver.vercel.app",
 ]
+
 CORS_ALLOW_CREDENTIALS = True
 
 # Image Storage: Local filesystem (backend/media/) — permanent, no cloud needed.
