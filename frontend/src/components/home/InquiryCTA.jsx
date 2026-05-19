@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import { api } from '../../utils/api';
 
 const InquiryCTA = () => {
@@ -32,7 +31,7 @@ const InquiryCTA = () => {
     }
     setLoading(true);
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/inquiries/`, {
+      await api.createInquiry({
         name: form.name,
         phone: form.phone,
         product_interest: form.product,

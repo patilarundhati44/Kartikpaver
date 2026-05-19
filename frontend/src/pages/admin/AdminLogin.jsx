@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
 import Logo from '../../components/common/Logo';
 
 const AdminLogin = () => {
@@ -32,7 +33,7 @@ const AdminLogin = () => {
     setError('');
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/login/`,
+        `${API_BASE_URL}/auth/login/`,
         { username: form.username, password: form.password },
         { timeout: 8000 }
       );

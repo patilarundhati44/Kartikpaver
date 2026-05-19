@@ -1,4 +1,8 @@
-const API_BASE_URL = "https://kartikpaver-production.up.railway.app/api";
+export const API_BASE_URL = process.env.REACT_APP_API_URL || (
+  typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:8000/api'
+    : 'https://kartikpaver-production.up.railway.app/api'
+);
 
 export const api = {
   // Products

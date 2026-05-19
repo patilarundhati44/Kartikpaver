@@ -3,10 +3,11 @@ import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
 import Logo from '../../components/common/Logo';
 
 // ─── Axios instance with auth ───────────────────────────────────────────────
-const api = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const api = axios.create({ baseURL: API_BASE_URL });
 
 // Attach token to every request
 api.interceptors.request.use((config) => {

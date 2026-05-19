@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import PageBanner from '../components/common/PageBanner';
 import SectionHeader from '../components/common/SectionHeader';
 import { api } from '../utils/api';
@@ -91,7 +90,7 @@ const Contact = () => {
     }
     setLoading(true);
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/inquiries/`, {
+      await api.createInquiry({
         name: form.name,
         email: form.email,
         phone: form.phone,
